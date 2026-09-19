@@ -9,7 +9,7 @@ __pycache__/
 .ipynb_checkpoints/
 
 # Data and outputs — too large for git
-data/
+/data/
 experiments/
 *.pth
 *.pt
@@ -23,3 +23,6 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
+# kaggle token
+KGAT_6c3d2f77e40a1f8bcc9c447fd1ed0e0c
