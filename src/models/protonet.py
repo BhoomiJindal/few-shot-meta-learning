@@ -49,8 +49,8 @@ class PrototypicalNetwork(nn.Module):
         # in one vectorized operation instead of a slow nested loop.
         query_embeddings = query_embeddings.unsqueeze(1)   # (n_query_total, 1, emb_dim)
         prototypes = prototypes.unsqueeze(0)                # (1, n_way, emb_dim)
-        distances = ((query_embeddings - prototypes) ** 2).sum(dim=2)  # (n_query_total, n_way)
-
+        distances = ((query_embeddings - prototypes) ** 2).sum(dim=2) / support_embeddings.shape[1]  # normalized by embedding dim
+        
         # Negative distance = logits. Smaller distance should mean higher
         # score, so we flip the sign before feeding this into cross-entropy
         # loss (which expects "higher score = more likely").
