@@ -1,0 +1,1 @@
+Untrained ProtoNet baseline accuracy is ~43% (vs ~20% chance) on 5-way episodes, confirmed genuine (not a bug) via label-shuffling control test — shuffled accuracy drops to ~21%, matching chance. Likely explained by informative random CNN features (architectural prior, not learning) — see Saxe et al. 2011.
