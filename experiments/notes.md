@@ -7,3 +7,13 @@ Untrained ProtoNet baseline accuracy is ~43% (vs ~20% chance) on 5-way episodes,
 - Confirms training pipeline is correctly learning, not just noise
 - Not yet a final benchmark number — original paper reports ~65-68%
   after much longer training (thousands of episodes)
+
+  ## MAML gradient flow verification (Step 7)
+- Tested that outer-loop loss backpropagates through all `inner_steps`
+  inner-loop adaptations into the original meta-parameters
+- Result: 0/18 parameters with missing gradients, all nonzero grad norms
+- Confirms functional_call + create_graph=True correctly implements
+  full second-order MAML (not a silently-broken first-order-only path)
+- Note: conv bias grad norms are near-zero (~1e-5 to 1e-6) due to
+  BatchNorm immediately following each conv layer, making bias
+  largely redundant -- expected architectural interaction, not a bug
